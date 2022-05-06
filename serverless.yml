@@ -1,0 +1,19 @@
+service: sesEmail
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: us-east-1
+  iamRoleStatements:
+        - Effect: Allow
+          Action:
+              - ses:*
+          Resource: '*'
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+        - schedule: cron(38 12 * * ? *)
